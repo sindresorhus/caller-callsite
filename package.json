@@ -1,0 +1,40 @@
+{
+  "name": "caller-callsite",
+  "version": "0.0.0",
+  "description": "Get the callsite of the caller function",
+  "license": "MIT",
+  "repository": "sindresorhus/caller-callsite",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "caller",
+    "calling",
+    "module",
+    "parent",
+    "callsites",
+    "callsite",
+    "stacktrace",
+    "stack",
+    "trace",
+    "function",
+    "file"
+  ],
+  "dependencies": {
+    "callsites": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "0.0.4"
+  }
+}
