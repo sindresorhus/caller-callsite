@@ -14,17 +14,17 @@ $ npm install --save caller-callsite
 
 ```js
 // foo.js
-var callerCallsite = require('caller-callsite');
+const callerCallsite = require('caller-callsite');
 
-module.exports = function () {
+module.exports = () => {
 	console.log(callerCallsite().getFileName());
-	//=> /Users/sindresorhus/dev/unicorn/bar.js
+	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
 }
 ```
 
 ```js
 // bar.js
-var foo = require('./foo');
+const foo = require('./foo');
 foo();
 ```
 
