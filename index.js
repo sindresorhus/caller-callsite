@@ -6,7 +6,15 @@ module.exports = function () {
 	var caller;
 
 	for (var i = 0; i < c.length; i++) {
-		if (c[i].receiver !== undefined) {
+		var hasReceiver;
+
+		try {
+			hasReceiver = c[i].getTypeName() !== null;
+		} catch (err) {
+			hasReceiver = c[i].receiver !== undefined;
+		}
+
+		if (hasReceiver) {
 			caller = i;
 			break;
 		}
