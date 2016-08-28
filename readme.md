@@ -38,4 +38,4 @@ Returns a [`callsite`](https://github.com/sindresorhus/callsites#api) object.
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)

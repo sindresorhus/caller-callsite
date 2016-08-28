@@ -1,18 +1,12 @@
 'use strict';
-var callsites = require('callsites');
+const callsites = require('callsites');
 
-module.exports = function () {
-	var c = callsites();
-	var caller;
+module.exports = () => {
+	const c = callsites();
+	let caller;
 
-	for (var i = 0; i < c.length; i++) {
-		var hasReceiver;
-
-		try {
-			hasReceiver = c[i].getTypeName() !== null;
-		} catch (err) {
-			hasReceiver = c[i].receiver !== undefined;
-		}
+	for (let i = 0; i < c.length; i++) {
+		const hasReceiver = c[i].getTypeName() !== null;
 
 		if (hasReceiver) {
 			caller = i;
