@@ -6,7 +6,8 @@ module.exports = () => {
 	let caller;
 
 	for (let i = 0; i < c.length; i++) {
-		const hasReceiver = c[i].getTypeName() !== null;
+		const typeName = c[i].getTypeName();
+		const hasReceiver = typeName !== null && typeName !== 'global';
 
 		if (hasReceiver) {
 			caller = i;
