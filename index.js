@@ -2,17 +2,10 @@
 const callsites = require('callsites');
 
 module.exports = () => {
-	const c = callsites();
-	let caller;
-
-	for (let i = 0; i < c.length; i++) {
-		const hasReceiver = c[i].getTypeName() !== null && c[i].getFileName() !== null;
-
+	for (const callsite of callsites()) {
+		const hasReceiver = callsite.getTypeName() !== null && callsite.getFileName() !== null;
 		if (hasReceiver) {
-			caller = i;
-			break;
+			return callsite;
 		}
 	}
-
-	return c[caller];
 };
