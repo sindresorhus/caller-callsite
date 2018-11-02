@@ -2,18 +2,11 @@
 const callsites = require('callsites');
 
 module.exports = () => {
-	const c = callsites();
-	let caller;
-
-	for (let i = 0; i < c.length; i++) {
-		const typeName = c[i].getTypeName();
-		const hasReceiver = typeName !== null && typeName !== 'global';
-
+	for (const callsite of callsites()) {
+		const typeName = callsite.getTypeName();
+		const hasReceiver = typeName !== null && typeName !== 'global' && callsite.getFileName() !== null;
 		if (hasReceiver) {
-			caller = i;
-			break;
+			return callsite;
 		}
 	}
-
-	return c[caller];
 };

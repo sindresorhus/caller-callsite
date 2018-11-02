@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save caller-callsite
+$ npm install caller-callsite
 ```
 
 
