@@ -2,6 +2,15 @@ import {CallSite as CallSiteInterface} from 'callsites';
 
 declare namespace callerCallsite {
 	type CallSite = CallSiteInterface;
+
+	interface Options {
+		/**
+		The depth of callsite.
+
+		@default 0
+		*/
+		readonly depth?: number;
+	}
 }
 
 /**
@@ -22,6 +31,6 @@ import foo from './foo';
 foo();
 ```
 */
-declare function callerCallsite(): callerCallsite.CallSite | undefined;
+declare function callerCallsite(options?: callerCallsite.Options): callerCallsite.CallSite | undefined;
 
 export = callerCallsite;

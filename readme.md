@@ -31,10 +31,20 @@ foo();
 
 ## API
 
-### callerCallsite()
+### callerCallsite([options])
 
 Returns a [`callsite`](https://github.com/sindresorhus/callsites#api) object.
 
+#### options
+
+Type: `object`
+
+##### depth
+
+Type: `number`<br>
+Default: `0`
+
+The depth of callsite.
 
 ## License
 
