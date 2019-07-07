@@ -31,7 +31,7 @@ foo();
 
 ## API
 
-### callerCallsite([options])
+### callerCallsite(options?)
 
 Returns a [`callsite`](https://github.com/sindresorhus/callsites#api) object.
 
