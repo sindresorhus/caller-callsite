@@ -44,7 +44,41 @@ Type: `object`
 Type: `number`<br>
 Default: `0`
 
-The depth of callsite.
+The depth of callsite, which means how many levels we follow back on the stack trace.
+
+For example:
+
+```js
+// foo.js
+'use strict';
+const callerCallsite = require('caller-callsite');
+
+module.exports = () => {
+	console.log(callerCallsite().getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
+	console.log(callerCallsite({depth: 1}).getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
+	console.log(callerCallsite({depth: 2}).getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/foo.js'
+}
+```
+
+```js
+// bar.js
+'use strict';
+const foo = require('./foo');
+
+module.exports = () => {
+	foo();
+}
+```
+
+```js
+// foobar.js
+'use strict';
+const bar = require('./bar');
+bar();
+```
 
 ## License
 

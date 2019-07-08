@@ -5,9 +5,42 @@ declare namespace callerCallsite {
 
 	interface Options {
 		/**
-		The depth of callsite.
+		The depth of callsite, which means how many levels we follow back on the stack trace.
 
 		@default 0
+
+		@example
+		```js
+		// foo.ts
+		'use strict';
+		const callerCallsite = require('caller-callsite');
+
+		module.exports = () => {
+			console.log(callerCallsite().getFileName());
+			//=> '/Users/sindresorhus/dev/unicorn/foobar.ts'
+			console.log(callerCallsite({depth: 1}).getFileName());
+			//=> '/Users/sindresorhus/dev/unicorn/bar.ts'
+			console.log(callerCallsite({depth: 2}).getFileName());
+			//=> '/Users/sindresorhus/dev/unicorn/foo.ts'
+		}
+		```
+
+		```js
+		// bar.ts
+		'use strict';
+		const foo = require('./foo');
+
+		module.exports = () => {
+			foo();
+		}
+		```
+
+		```js
+		// foobar.ts
+		'use strict';
+		const bar = require('./bar');
+		bar();
+		```
 		*/
 		readonly depth?: number;
 	}
