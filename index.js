@@ -1,11 +1,21 @@
 'use strict';
 const callsites = require('callsites');
 
-module.exports = () => {
+module.exports = ({depth = 0} = {}) => {
+	const callers = [];
+	const callerFileSet = new Set();
+
 	for (const callsite of callsites()) {
-		const hasReceiver = callsite.getTypeName() !== null && callsite.getFileName() !== null;
+		const fileName = callsite.getFileName();
+		const hasReceiver = callsite.getTypeName() !== null && fileName !== null;
+
+		if (!callerFileSet.has(fileName)) {
+			callerFileSet.add(fileName);
+			callers.unshift(callsite);
+		}
+
 		if (hasReceiver) {
-			return callsite;
+			return callers[depth];
 		}
 	}
 };

@@ -31,9 +31,51 @@ foo();
 
 ## API
 
-### callerCallsite()
+### callerCallsite(options?)
 
 Returns a [`callsite`](https://github.com/sindresorhus/callsites#api) object.
+
+#### options
+
+Type: `object`
+
+##### depth
+
+Type: `number`<br>
+Default: `0`
+
+The callsite depth, meaning how many levels we follow back on the stack trace.
+
+For example:
+
+```js
+// foo.js
+const callerCallsite = require('caller-callsite');
+
+module.exports = () => {
+	console.log(callerCallsite().getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
+	console.log(callerCallsite({depth: 1}).getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
+	console.log(callerCallsite({depth: 2}).getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/foo.js'
+}
+```
+
+```js
+// bar.js
+const foo = require('./foo');
+
+module.exports = () => {
+	foo();
+}
+```
+
+```js
+// foobar.js
+const bar = require('./bar');
+bar();
+```
 
 
 ## License
