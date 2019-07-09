@@ -76,8 +76,3 @@ module.exports = () => {
 const bar = require('./bar');
 bar();
 ```
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
