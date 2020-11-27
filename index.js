@@ -2,21 +2,27 @@
 const callsites = require('callsites');
 
 module.exports = ({depth = 0} = {}) => {
-	const callers = [];
-	const callerFileSet = new Set();
+	let [site, ...sites] = callsites();
 
-	for (const callsite of callsites()) {
-		const typeName = callsite.getTypeName();
-		const fileName = callsite.getFileName();
-		const hasReceiver = typeName !== null && typeName !== 'global' && fileName !== null;
+	let filename = site.getFileName();
 
-		if (!callerFileSet.has(fileName)) {
-			callerFileSet.add(fileName);
-			callers.unshift(callsite);
+	for (;;) {
+		let fname;
+
+		while ((site = sites.shift())) {
+			fname = site.getFileName();
+
+			if (fname !== filename && !fname.startsWith('node:')) {
+				break;
+			}
 		}
 
-		if (hasReceiver) {
-			return callers[depth];
+		if (!(site && depth--)) {
+			break;
 		}
+
+		filename = fname;
 	}
+
+	return site;
 };
