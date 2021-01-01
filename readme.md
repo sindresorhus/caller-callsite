@@ -1,4 +1,4 @@
-# caller-callsite [![Build Status](https://travis-ci.org/sindresorhus/caller-callsite.svg?branch=master)](https://travis-ci.org/sindresorhus/caller-callsite)
+# caller-callsite
 
 > Get the [callsite](https://github.com/sindresorhus/callsites#api) of the caller function
 
