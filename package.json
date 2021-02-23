@@ -1,13 +1,13 @@
 {
-	"name": "caller-callsite",
+	"name": "@piranna/caller-callsite",
 	"version": "4.1.0",
 	"description": "Get the callsite of the caller function",
 	"license": "MIT",
-	"repository": "sindresorhus/caller-callsite",
+	"repository": "piranna/caller-callsite",
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"name": "Jesús Leganés-Combarro 'piranna'",
+		"email": "piranna@gmail.com",
+		"url": "piranna.github.io"
 	},
 	"engines": {
 		"node": ">=8"
