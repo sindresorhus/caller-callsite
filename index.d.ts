@@ -1,9 +1,9 @@
-import {CallSite as CallSiteInterface} from 'callsites';
+import {CallSite} from 'callsites';
 
-export type CallSite = CallSiteInterface;
+export {CallSite};
 
 export interface Options {
-/**
+	/**
 	The callsite depth, meaning how many levels we follow back on the stack trace.
 
 	@default 0
