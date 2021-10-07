@@ -1,7 +1,6 @@
-'use strict';
-const callsites = require('callsites');
+import callsites from 'callsites';
 
-module.exports = ({depth = 0} = {}) => {
+export default function callerCallsite({depth = 0} = {}) {
 	const callers = [];
 	const callerFileSet = new Set();
 
@@ -18,4 +17,4 @@ module.exports = ({depth = 0} = {}) => {
 			return callers[depth];
 		}
 	}
-};
+}

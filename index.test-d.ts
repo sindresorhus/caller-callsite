@@ -1,6 +1,6 @@
 import {expectType, expectError} from 'tsd';
-import callerCallsite = require('.');
+import callerCallsite, {CallSite} from './index.js';
 
-expectType<callerCallsite.CallSite | undefined>(callerCallsite());
-expectType<callerCallsite.CallSite | undefined>(callerCallsite({depth: 1}));
-expectError<callerCallsite.CallSite>(callerCallsite());
+expectType<CallSite | undefined>(callerCallsite());
+expectType<CallSite | undefined>(callerCallsite({depth: 1}));
+expectError<CallSite>(callerCallsite());
