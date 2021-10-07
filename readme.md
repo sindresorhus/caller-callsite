@@ -5,8 +5,8 @@
 
 ## Install
 
-```
-$ npm install caller-callsite
+```sh
+npm install caller-callsite
 ```
 
 
@@ -14,9 +14,9 @@ $ npm install caller-callsite
 
 ```js
 // foo.js
-const callerCallsite = require('caller-callsite');
+import callerCallsite from 'caller-callsite');
 
-module.exports = () => {
+export default function foo() {
 	console.log(callerCallsite().getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
 }
@@ -24,7 +24,7 @@ module.exports = () => {
 
 ```js
 // bar.js
-const foo = require('./foo');
+import foo from './foo.js';
 foo();
 ```
 
@@ -50,9 +50,9 @@ For example:
 
 ```js
 // foo.js
-const callerCallsite = require('caller-callsite');
+import callerCallsite from 'caller-callsite';
 
-module.exports = () => {
+export default function foo() {
 	console.log(callerCallsite().getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
 	console.log(callerCallsite({depth: 1}).getFileName());
@@ -64,16 +64,16 @@ module.exports = () => {
 
 ```js
 // bar.js
-const foo = require('./foo');
+import foo from './foo.js';
 
-module.exports = () => {
+export default function foo() {
 	foo();
 }
 ```
 
 ```js
 // foobar.js
-const bar = require('./bar');
+import bar from './bar.js';
 bar();
 ```
 

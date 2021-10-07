@@ -1,42 +1,40 @@
-import {CallSite as CallSiteInterface} from 'callsites';
+import {CallSite} from 'callsites';
 
-declare namespace callerCallsite {
-	type CallSite = CallSiteInterface;
+export {CallSite};
 
-	interface Options {
-		/**
-		The callsite depth, meaning how many levels we follow back on the stack trace.
+export interface Options {
+	/**
+	The callsite depth, meaning how many levels we follow back on the stack trace.
 
-		@default 0
+	@default 0
 
-		@example
-		```
-		// foo.ts
-		import callerCallsite = require('caller-callsite');
+	@example
+	```
+	// foo.ts
+	import callerCallsite from 'caller-callsite';
 
-		module.exports = () => {
-			console.log(callerCallsite().getFileName());
-			//=> '/Users/sindresorhus/dev/unicorn/foobar.ts'
-			console.log(callerCallsite({depth: 1}).getFileName());
-			//=> '/Users/sindresorhus/dev/unicorn/bar.ts'
-			console.log(callerCallsite({depth: 2}).getFileName());
-			//=> '/Users/sindresorhus/dev/unicorn/foo.ts'
-		}
-
-		// bar.ts
-		import foo = require('./foo');
-
-		module.exports = () => {
-			foo();
-		}
-
-		// foobar.ts
-		import bar = require('./bar');
-		bar();
-		```
-		*/
-		readonly depth?: number;
+	export default function foo() {
+		console.log(callerCallsite().getFileName());
+		//=> '/Users/sindresorhus/dev/unicorn/foobar.ts'
+		console.log(callerCallsite({depth: 1}).getFileName());
+		//=> '/Users/sindresorhus/dev/unicorn/bar.ts'
+		console.log(callerCallsite({depth: 2}).getFileName());
+		//=> '/Users/sindresorhus/dev/unicorn/foo.ts'
 	}
+
+	// bar.ts
+	import foo from './foo.js';
+
+	export default function bar() {
+		foo();
+	}
+
+	// foobar.ts
+	import bar from './bar.js';
+	bar();
+	```
+	*/
+	readonly depth?: number;
 }
 
 /**
@@ -45,18 +43,16 @@ Get the [callsite](https://github.com/sindresorhus/callsites#api) of the caller 
 @example
 ```js
 // foo.ts
-import callerCallsite = require('caller-callsite');
+import callerCallsite from 'caller-callsite';
 
-export default () => {
+export default function foo() {
 	console.log(callerCallsite().getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/bar.ts'
 }
 
 // bar.ts
-import foo from './foo';
+import foo from './foo.js';
 foo();
 ```
 */
-declare function callerCallsite(options?: callerCallsite.Options): callerCallsite.CallSite | undefined;
-
-export = callerCallsite;
+export default function callerCallsite(options?: Options): CallSite | undefined;
