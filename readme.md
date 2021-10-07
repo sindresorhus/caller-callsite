@@ -2,19 +2,17 @@
 
 > Get the [callsite](https://github.com/sindresorhus/callsites#api) of the caller function
 
-
 ## Install
 
 ```sh
 npm install caller-callsite
 ```
 
-
 ## Usage
 
 ```js
 // foo.js
-import callerCallsite from 'caller-callsite');
+import callerCallsite from 'caller-callsite';
 
 export default function foo() {
 	console.log(callerCallsite().getFileName());
@@ -28,7 +26,6 @@ import foo from './foo.js';
 foo();
 ```
 
-
 ## API
 
 ### callerCallsite(options?)
@@ -41,7 +38,7 @@ Type: `object`
 
 ##### depth
 
-Type: `number`<br>
+Type: `number`\
 Default: `0`
 
 The callsite depth, meaning how many levels we follow back on the stack trace.
@@ -76,7 +73,6 @@ export default function foo() {
 import bar from './bar.js';
 bar();
 ```
-
 
 ---
 

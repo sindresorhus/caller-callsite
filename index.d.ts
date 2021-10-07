@@ -1,7 +1,5 @@
 import {CallSite} from 'callsites';
 
-export {CallSite};
-
 export interface Options {
 	/**
 	The callsite depth, meaning how many levels we follow back on the stack trace.
@@ -56,3 +54,5 @@ foo();
 ```
 */
 export default function callerCallsite(options?: Options): CallSite | undefined;
+
+export {CallSite} from 'callsites';
