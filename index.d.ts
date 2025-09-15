@@ -8,26 +8,26 @@ export interface Options {
 
 	@example
 	```
-	// foo.ts
+	// foo.js
 	import callerCallsite from 'caller-callsite';
 
 	export default function foo() {
 		console.log(callerCallsite().getFileName());
-		//=> '/Users/sindresorhus/dev/unicorn/foobar.ts'
+		//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
 		console.log(callerCallsite({depth: 1}).getFileName());
-		//=> '/Users/sindresorhus/dev/unicorn/bar.ts'
+		//=> '/Users/sindresorhus/dev/unicorn/bar.js'
 		console.log(callerCallsite({depth: 2}).getFileName());
-		//=> '/Users/sindresorhus/dev/unicorn/foo.ts'
+		//=> '/Users/sindresorhus/dev/unicorn/foo.js'
 	}
 
-	// bar.ts
+	// bar.js
 	import foo from './foo.js';
 
 	export default function bar() {
 		foo();
 	}
 
-	// foobar.ts
+	// foobar.js
 	import bar from './bar.js';
 	bar();
 	```
@@ -40,15 +40,15 @@ Get the [callsite](https://github.com/sindresorhus/callsites#api) of the caller 
 
 @example
 ```js
-// foo.ts
+// foo.js
 import callerCallsite from 'caller-callsite';
 
 export default function foo() {
 	console.log(callerCallsite().getFileName());
-	//=> '/Users/sindresorhus/dev/unicorn/bar.ts'
+	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
 }
 
-// bar.ts
+// bar.js
 import foo from './foo.js';
 foo();
 ```

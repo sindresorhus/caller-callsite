@@ -63,7 +63,7 @@ export default function foo() {
 // bar.js
 import foo from './foo.js';
 
-export default function foo() {
+export default function bar() {
 	foo();
 }
 ```
