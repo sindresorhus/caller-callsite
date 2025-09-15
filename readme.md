@@ -41,7 +41,7 @@ Type: `object`
 Type: `number`\
 Default: `0`
 
-The callsite depth, meaning how many levels we follow back on the stack trace.
+The callsite depth, meaning how many levels we follow back on the stack trace from the caller.
 
 For example:
 
@@ -51,11 +51,9 @@ import callerCallsite from 'caller-callsite';
 
 export default function foo() {
 	console.log(callerCallsite().getFileName());
-	//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
-	console.log(callerCallsite({depth: 1}).getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
-	console.log(callerCallsite({depth: 2}).getFileName());
-	//=> '/Users/sindresorhus/dev/unicorn/foo.js'
+	console.log(callerCallsite({depth: 1}).getFileName());
+	//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
 }
 ```
 

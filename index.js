@@ -1,28 +1,24 @@
 import callsites from 'callsites';
 
-export default function callerCallsite({depth = 0} = {}) {
-	const callers = [];
-	const callerFileSet = new Set();
+export default function callerCallsite(options = {}) {
+	const {depth = 0} = options ?? {};
 
-	for (const callsite of callsites()) {
-		const fileName = callsite.getFileName();
-
-		// Skip Node.js internal modules
-		if (fileName?.startsWith('node:')) {
-			continue;
-		}
-
-		if (!callerFileSet.has(fileName)) {
-			callerFileSet.add(fileName);
-			callers.unshift(callsite);
-		}
-
-		// Stop at the first receiver (typeName is not null)
-		if (callsite.getTypeName() !== null && fileName !== null) {
-			return callers[depth];
-		}
+	// Handle invalid depth values
+	if (!Number.isInteger(depth) || depth < 0) {
+		return undefined;
 	}
 
-	// Fallback: if no receiver found, return from collected callers
-	return callers[depth];
+	const sites = callsites();
+
+	// Skip Node.js internal modules and collect valid callsites
+	const validSites = sites.filter(site => {
+		const fileName = site.getFileName();
+		return fileName && !fileName.startsWith('node:');
+	});
+
+	// Skip the first site (which is callerCallsite itself)
+	// Skip the second site (which is the function that called callerCallsite)
+	// Return the caller at the requested depth
+	// depth 0 = immediate caller, depth 1 = caller's caller, etc.
+	return validSites[depth + 2];
 }

@@ -2,7 +2,7 @@ import {CallSite} from 'callsites';
 
 export interface Options {
 	/**
-	The callsite depth, meaning how many levels we follow back on the stack trace.
+	The callsite depth, meaning how many levels we follow back on the stack trace from the caller.
 
 	@default 0
 
@@ -13,11 +13,9 @@ export interface Options {
 
 	export default function foo() {
 		console.log(callerCallsite().getFileName());
-		//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
-		console.log(callerCallsite({depth: 1}).getFileName());
 		//=> '/Users/sindresorhus/dev/unicorn/bar.js'
-		console.log(callerCallsite({depth: 2}).getFileName());
-		//=> '/Users/sindresorhus/dev/unicorn/foo.js'
+		console.log(callerCallsite({depth: 1}).getFileName());
+		//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
 	}
 
 	// bar.js
@@ -39,7 +37,7 @@ export interface Options {
 Get the [callsite](https://github.com/sindresorhus/callsites#api) of the caller function.
 
 @example
-```js
+```
 // foo.js
 import callerCallsite from 'caller-callsite';
 
