@@ -1,6 +1,6 @@
-import {CallSite} from 'callsites';
+import {type CallSite} from 'callsites';
 
-export interface Options {
+export type Options = {
 	/**
 	The callsite depth, meaning how many levels we follow back on the stack trace from the caller.
 
@@ -31,7 +31,7 @@ export interface Options {
 	```
 	*/
 	readonly depth?: number;
-}
+};
 
 /**
 Get the [callsite](https://github.com/sindresorhus/callsites#api) of the caller function.

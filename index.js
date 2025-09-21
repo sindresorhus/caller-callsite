@@ -1,7 +1,7 @@
 import callsites from 'callsites';
 
 export default function callerCallsite(options = {}) {
-	const {depth = 0} = options ?? {};
+	const {depth = 0} = options;
 
 	// Handle invalid depth values
 	if (!Number.isInteger(depth) || depth < 0) {
